@@ -18,30 +18,23 @@
                     name: 'Maja',
                     age: 25
                 }
-                // we bound this to the state of the component when we use arrow functions
-                handleClick = (e) => {
-                    // also, it's BAD practice to change state directly, so we use the setState function
+                handleChange = (e) => {
                     this.setState({
-                        name: 'Dragan',
-                        age: 26
+                        name: e.target.value
                     });
-                    console.log(this.state);
                 }
-                handleMouseOver = (e) => {
-                    console.log(e.target, e.pageX);
-                }
-                handleCopy = (e) => {
-                    console.log('Try being original for once');
+                handleSubmit = (e) => {
+                    e.preventDefault();
+                    console.log('form submitted', this.state.name)
                 }
                 render() {
                     return (
                         <div className="app-content">
-                            <h1>Hey, ninjas</h1>
-                            <p>My name is: { this.state.name } and I am { this.state.age }</p>
-                            <button onClick={this.handleClick}
-                            >Click me!</button>
-                            <button onMouseOver={this.handleMouseOver}>~Hover me~</button>
-                            <p onCopy={this.handleCopy}>What we think, we become.</p>
+                            <h1>My name is { this.state.name }</h1>
+                            <form onSubmit={this.handleSubmit}>
+                                <input type="text" onChange={this.handleChange}/>
+                                <button>Submit</button>
+                            </form>
                         </div>
                     )
                 }
