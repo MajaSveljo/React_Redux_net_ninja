@@ -18,13 +18,19 @@
                     name: 'Maja',
                     age: 25
                 }
-                handleClick(e) {
-                    console.log(e.target);
+                // we bound this to the state of the component when we use arrow functions
+                handleClick = (e) => {
+                    // also, it's BAD practice to change state directly, so we use the setState function
+                    this.setState({
+                        name: 'Dragan',
+                        age: 26
+                    });
+                    console.log(this.state);
                 }
-                handleMouseOver(e) {
+                handleMouseOver = (e) => {
                     console.log(e.target, e.pageX);
                 }
-                handleCopy(e) {
+                handleCopy = (e) => {
                     console.log('Try being original for once');
                 }
                 render() {
@@ -33,9 +39,6 @@
                             <h1>Hey, ninjas</h1>
                             <p>My name is: { this.state.name } and I am { this.state.age }</p>
                             <button onClick={this.handleClick}
-                            // we are not invoking the function (this.handleClick()) because that would fire the function
-                            // as soon as the page is loaded, so we're just passing a reference to the function
-                            // and the app will find it when we fire it
                             >Click me!</button>
                             <button onMouseOver={this.handleMouseOver}>~Hover me~</button>
                             <p onCopy={this.handleCopy}>What we think, we become.</p>
